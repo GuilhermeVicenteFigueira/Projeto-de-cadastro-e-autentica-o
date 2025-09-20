@@ -10,7 +10,7 @@ class User {
         $this->id = $id;
         $this->name = $name;
         $this->email = $email;
-        $this->password = password_hash($password, PASSWORD_DEFAULT);
+        $this->password = $password;
     }
 
     public function getId(): int 
@@ -27,18 +27,30 @@ class User {
     {
         return $this->email;
     }
+    
+    public function getPassword(): string 
+    {
+        return $this->password;
+    }
 
-
-      public function setId(int $id): void {
+    public function setId(int $id): void
+    {
         $this->id = $id;
     }
 
-    public function setNome(string $name): void {
+    public function setNome(string $name): void 
+    {
         $this->name = $name;
     }
 
-    public function setEmail(string $email): void {
+    public function setEmail(string $email): void 
+    {
         $this->email = $email;
+    }
+
+    public function setPassword(string $password): void 
+    {
+        $this->password = $password;
     }
 
     }
