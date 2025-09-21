@@ -21,7 +21,7 @@ class UserManager{
             return false;
         }
 
-        if(!Validator->validatePassword($user))
+        if(!Validator->validatePassword($user->getPassword()))
         {
             echo "Senha invalida";
             return false;
@@ -75,8 +75,17 @@ class UserManager{
         echo"login não encontrado"; 
     }
 
-    //Reset de Senha
-    //Permitir atualizar a senha de um usuário existente.
-    //Aplicar novamente as regras de senha forte.
-    //Substituir pela nova senha com password_hash.
+  
+    public function resetPassword(int $id, string $password): void{
+        
+        foreach($this->users as $key){
+            if($key['Id']===$id){
+                Validator->validatePassword($password);
+                Validator->createHash($password);
+                $this->user->setPassword($password);
+                echo"Senha alterada com secesso!";
+            }
+            echo"Usuario não existe";
+        }
+    }
 }

@@ -10,13 +10,13 @@ class Validator{
 
     } 
 
-  public static function validatePassword( User $user ): bool{
-    if(strlen(trim($user->getPassword()))<8)
+  public static function validatePassword( string $password ): bool{
+    if(strlen(trim($password))<8)
       {
         return false;
       }
         
-    if(!preg_match('/[A-Z]/', $user->getPassword()))
+    if(!preg_match('/[A-Z]/', $password))
       {
         return false;
       }
@@ -25,8 +25,8 @@ class Validator{
      
     }
 
-  public static function createHash( User $user ): void{
-      $user->setPassword(password_hash($user->getPassword(), PASSWORD_DEFAULT));
+  public static function createHash( string $password): void{
+      $password(password_hash($password, PASSWORD_DEFAULT));
     }
 
   public static function validateHash(string $senha, User $user) : bool{ 
