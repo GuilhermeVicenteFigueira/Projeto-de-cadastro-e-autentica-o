@@ -13,29 +13,29 @@ class UserManager{
           $this->users =$users;
         }
      
-    public function createUser(User $user): bool
+    public function createUser(String $nome, string $email,string $senha): bool
     {
-        if(!Validator->validateEmail($user))
+        if(!Validator->validateEmail($email))
         {
             echo "Email invalido";
             return false;
         }
 
-        if(!Validator->validatePassword($user->getPassword()))
+        if(!Validator->validatePassword($senha))
         {
             echo "Senha invalida";
             return false;
         }
 
-        if(!UserManager->hasSameEmail($user))
+        if(!UserManager->hasSameEmail($email))
         {
             echo "Email Invalido";
             return false;
         }
 
-        Validator->createHash($user);
-
-        $this->users[] = [
+        $passwordHash=Validator->createHash($senha);
+         $user = new User(UUID_TYPE_RANDOM,$nome, $email, $passwordHash);
+         $this->users[] = [
             'Id'=>$user->getId(),
             'Nome'=>$user->getNome(),
             'Email'=>$user->setEmail(),
@@ -44,10 +44,10 @@ class UserManager{
         
     }
 
-    public function hasSameEmail($user): bool
+    public function hasSameEmail(string $email): bool
     {
-        foreach($this->user as $index){
-            if($user['Email']===$user)
+        foreach($this->users as $index){
+            if($index['Email']===$email)
                 return false;
         }
             return true;

@@ -25,8 +25,8 @@ class Validator{
      
     }
 
-  public static function createHash( string $password): void{
-      $password(password_hash($password, PASSWORD_DEFAULT));
+  public static function createHash( string $password): string{
+      return password_hash($password, PASSWORD_DEFAULT);
     }
 
   public static function validateHash(string $senha, User $user) : bool{ 
