@@ -18,7 +18,7 @@ class User {
         return $this->id;
     }
 
-    public function getNome(): string 
+    public function getName(): string 
     {
         return $this->name;
     }
@@ -38,7 +38,7 @@ class User {
         $this->id = $id;
     }
 
-    public function setNome(string $name): void 
+    public function setName(string $name): void 
     {
         $this->name = $name;
     }

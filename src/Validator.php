@@ -1,17 +1,17 @@
 <?php 
 
 class Validator{
-  public static function validateEmail( User $user ): bool{
-      if(!filter_var($user->getEmail(), FILTER_VALIDATE_EMAIL))
+  public static function validateEmail( string $email ): bool{
+      if(!filter_var($email, FILTER_VALIDATE_EMAIL))
       {
-        return false;
-      }
         return true;
+      }
+        return false;
 
     } 
 
   public static function validatePassword( string $password ): bool{
-    if(strlen(trim($password))<8)
+    if(strlen(($password))<=8)
       {
         return false;
       }
