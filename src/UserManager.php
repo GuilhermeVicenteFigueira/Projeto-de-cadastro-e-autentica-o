@@ -2,23 +2,23 @@
 
 require_once 'Validator.php';
 
-class UserManager{
-
+class UserManager
+{
     private array $users = [];
 
     public function __construct(array $users) 
-        {
-          $this->users =$users;
-        }
-     
-    public function createUser(int $id, String $name, string $email,string $password): string
     {
-        if(!Validator::validateEmail($email))
+        $this->users = $users;
+    }
+     
+    public function createUser(int $id, string $name, string $email, string $password): string
+    {
+        if(! Validator::validateEmail($email))
         {
             return "Email invalido";
         }
 
-        if(!Validator::validatePassword($password))
+        if(! Validator::validatePassword($password))
         {
  
             return "Senha invalida";
@@ -30,7 +30,7 @@ class UserManager{
             return "Email já está em uso";
         }
 
-        $passwordHash=Validator::createHash($password);
+        $passwordHash = Validator::createHash($password);
 
         $user = new User($id,$name, $email, $passwordHash);
 
@@ -48,8 +48,8 @@ class UserManager{
 
     public function hasSameEmail(string $email): bool
     {
-        foreach($this->users as $index){
-            if($index['Email']===$email)
+        foreach($this->users as $index) {
+            if($index['Email'] === $email)
                 return true;
         }
             return false;
@@ -59,32 +59,32 @@ class UserManager{
 
     public function loginUser(string $email, string $password): void{
 
-          foreach($this->users as $user){
-                if($user['Email'] === $email && 
-                    Validator::validateHash($password, new User(
-                $user['Id'], $user['Nome'], $user['Email'], $user       ['password']
-                    ))) {
-                        echo "Logado com sucesso";
-                        return;
-                }
+        foreach($this->users as $user) {
+            if($user['Email'] === $email && Validator::validateHash($password, new User($user['Id'], $user['Nome'], $user['Email'], $user['password']))) {
+                echo "Logado com sucesso";
+                return;
             }
-                echo "credenciais invalidas";
+        }
+        echo "credenciais invalidas";
     }
 
   
-    public function resetPassword(int $id, string $password): void{
-        
-        foreach($this->users as &$user){
-        if($user['Id'] === $id){
-            if(!Validator::validatePassword($password)){
-                echo "Senha inválida";
+    public function resetPassword(int $id, string $password): void
+    {
+        foreach($this->users as &$user) {
+
+            if($user['Id'] === $id)
+            {
+                if(!Validator::validatePassword($password))
+                {
+                    echo "Senha inválida";
+                    return;
+                }
+                $user['password'] = Validator::createHash($password);
+                echo "Senha alterada com sucesso!";
                 return;
             }
-            $user['password'] = Validator::createHash($password);
-            echo "Senha alterada com sucesso!";
-            return;
         }
-    }
-    echo "Usuário não existe";
+        echo "Usuário não existe";
     }
 }

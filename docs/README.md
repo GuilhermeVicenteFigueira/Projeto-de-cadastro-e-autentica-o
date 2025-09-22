@@ -62,8 +62,8 @@ Este projeto está licenciado sob a licença não especificada.
 
 ## 👨‍💻 Autores
 
-- [GuilhermeVicenteFigueira](https://github.com/GuilhermeVicenteFigueira)
-- [JoãoPedroMessiasDaSilva ](https://github.com/jpmsilvamessias)
+- [GuilhermeVicenteFigueira | RA: 1992017](https://github.com/GuilhermeVicenteFigueira)
+- [JoãoPedroMessiasDaSilva | RA: 1993720](https://github.com/jpmsilvamessias)
 ---
 
 
