@@ -52,7 +52,6 @@ class UserManager
 
     public function loginUser(string $email, string $password): void
     {
-
         foreach ($this->users as $user) {
             if ($user['Email'] === $email && Validator::validateHash($password, new User($user['Id'], $user['Nome'], $user['Email'], $user['password']))) {
                 echo "Logado com sucesso";
@@ -67,10 +66,8 @@ class UserManager
     {
         foreach ($this->users as &$user) {
 
-            if ($user['Id'] === $id)
-            {
-                if (!Validator::validatePassword($password))
-                {
+            if ($user['Id'] === $id) {
+                if (!Validator::validatePassword($password)){
                     echo "Senha inválida";
                     return;
                 }
