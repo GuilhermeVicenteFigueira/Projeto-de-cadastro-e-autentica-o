@@ -8,16 +8,16 @@ class UserManager
      
     public function createUser(int $id, string $name, string $email, string $password): string
     {
-        if (!Validator::validateEmail($email)){
+        if (!Validator::validateEmail($email)) {
             return "Email invalido";
         }
 
-        if (!Validator::validatePassword($password)){
+        if (!Validator::validatePassword($password)) {
  
             return "Senha invalida";
         }
 
-        if (UserManager::hasSameEmail($email)){
+        if (UserManager::hasSameEmail($email)) {
             
             return "Email já está em uso";
         }
@@ -65,9 +65,8 @@ class UserManager
     public function resetPassword(int $id, string $password): void
     {
         foreach ($this->users as &$user) {
-
             if ($user['Id'] === $id) {
-                if (!Validator::validatePassword($password)){
+                if (!Validator::validatePassword($password)) {
                     echo "Senha inválida";
                     return;
                 }

@@ -23,7 +23,7 @@ class Validator
     }
 
     return true;
- }
+  }
 
   public static function createHash(string $password): string
   {
