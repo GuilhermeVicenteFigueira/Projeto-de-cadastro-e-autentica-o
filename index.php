@@ -5,7 +5,7 @@ require_once "src/UserManager.php";
 require_once "src/Validator.php";
 
 
-$manager = new UserManager([]);
+$manager = new UserManager();
 
 echo $manager->createUser(1,"Maria Oliveira","maria@email.com","Senha123.");
 echo $manager->createUser(2,"Pedro","pedro@@email","Senha123");
