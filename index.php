@@ -21,4 +21,4 @@ $manager->loginUser("maria@email.com","Senha123.");
 
 
 echo "<br>";
-$manager->resetPassword(1,"NovaSenha@123");
+$manager->resetPassword("maria@email.com","NovaSenha@123");

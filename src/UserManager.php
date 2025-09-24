@@ -4,6 +4,8 @@ require_once 'Validator.php';
 
 class UserManager
 {
+    private User $user;
+    
     private array $users = [];
      
     public function createUser(int $id, string $name, string $email, string $password): string
@@ -50,31 +52,28 @@ class UserManager
 
 
 
-    public function loginUser(string $email, string $password): void
+    public function loginUser( string $password): void
     {
         foreach ($this->users as $user) {
-            if ($user['Email'] === $email && Validator::validateHash($password, new User($user['Id'], $user['Nome'], $user['Email'], $user['password']))) {
-                echo "Logado com sucesso";
-                return;
-            }
+            
         }
         echo "credenciais invalidas";
     }
 
   
-    public function resetPassword(int $id, string $password): void
-    {
-        foreach ($this->users as &$user) {
-            if ($user['Id'] === $id) {
-                if (!Validator::validatePassword($password)) {
-                    echo "Senha inválida";
+    public function resetPassword(string $email, string $password): void
+{
+            foreach ($this->users as &$user) { 
+             if ($user['Email'] === $email) {
+                    $user['password'] = Validator::createHash($password);
+                    echo "Senha redefinida com sucesso para $email";
                     return;
-                }
-                $user['password'] = Validator::createHash($password);
-                echo "Senha alterada com sucesso!";
-                return;
             }
         }
-        echo "Usuário não existe";
-    }
+            echo "Usuário não existe";
 }
+
+
+}
+
+
