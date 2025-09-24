@@ -14,10 +14,10 @@ echo $manager->createUser(3,"pedro","pedro@email.com","Senha123");
 
 
 echo "<br>";
-$manager->loginUser("pedro","Errada123");
+echo $manager->loginUser("pedro","Errada123");
 
 echo "<br>";
-$manager->loginUser("maria@email.com","Senha123.");
+echo $manager->loginUser("maria@email.com","Senha123.");
 
 
 echo "<br>";

@@ -52,13 +52,29 @@ class UserManager
 
 
 
-    public function loginUser( string $password): void
-    {
-        foreach ($this->users as $user) {
-            
-        }
-        echo "credenciais invalidas";
+   public function loginUser(string $email, string $password): string
+{
+    if (!Validator::validateEmail($email)) {
+        return "Email inválido";
     }
+
+    if (!Validator::validatePassword($password)) {
+        return "Senha inválida";
+    }
+
+    if (!UserManager::hasSameEmail($email)) {
+        return "Email não existe";
+    }
+
+    foreach ($this->users as $user) {
+        if ($user['Email'] === $email && password_verify($password, $user['password'])) {
+            return "Login feito com sucesso";
+        }
+    }
+
+    return "Credenciais inválidas";
+}
+
 
   
     public function resetPassword(string $email, string $password): void
